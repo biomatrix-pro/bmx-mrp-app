@@ -1,0 +1,18 @@
+{
+  "parser": "babel-eslint",
+  "extends": [ "standard", "plugin:react/recommended", "plugin:jsx-a11y/recommended" ],
+  "env": {
+    "mocha": true,
+    "browser": true
+  },
+  "rules": {
+    "comma-dangle": ["error", "only-multiline"]
+  },
+  "plugins": [ "react", "jsx-a11y" ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}
