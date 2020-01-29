@@ -6,11 +6,14 @@ import {
   TextInput,
   Datagrid,
   TextField,
+  NumberField,
+  BooleanField,
   ReferenceField,
   SelectField,
   DateField,
   EditButton,
   DateInput,
+  BooleanInput,
   ReferenceInput,
   NumberInput,
   SelectInput
@@ -26,18 +29,19 @@ const useStyles = makeStyles({
 
 const ProductFilter = (props) => (
   <Filter {...props}>
-    <TextInput label='Name' source='name' />
-    <TextInput label='Full name' source='fullName' />
+    <TextInput label='Фильтр' source='q' alwaysOn />
   </Filter>
 )
 
 export const ProductList = props => (
-  <List {...props} title='Deploy projects' filters={<ProductFilter />}>
+  <List {...props} title='Продукты' filters={<ProductFilter />}>
     <Datagrid rowClick='edit'>
-      <TextField source='caption' label='Repo' />
-      <TextField source='fullName' label='Full repo' />
-      <TextField source='branch' label='Branch' />
-      <TextField source='site' label='Site' />
+      <TextField source='caption' label='Название' />
+      <TextField source='unit' label='Ед изм' />
+      <NumberField source='qntMin' label='Мин выпуск' />
+      <NumberField source='qntStep' label='Шаг выпуска' />
+      <BooleanField source='inWorkingDays' label='Рабочие дни' />
+      <TextField source='comments' label='Примечания' />
     </Datagrid>
   </List>
 )
@@ -47,15 +51,13 @@ const ProductForm = (props) => {
 
   return (
     <SimpleForm {... props}>
-      <TextInput source='id' label='Id' disabled className={classes.wide} />
-      <TextInput source='name' label='Repo' validate={required()} />
-      <TextInput source='fullName' label='Full repo' className={classes.wide} validate={required()} />
-      <TextInput source='script' label='Script' className={classes.wide} validate={required()} />
-      <NumberInput source='scriptTimeout' label='Script timeout' />
-      <TextInput source='branch' label='Branch' className={classes.wide} validate={required()} />
-      <TextInput source='site' label='Site' className={classes.wide} />
-      <TextInput source='siteConfigPath' label='Site config path' className={classes.wide} />
-      <TextInput source='siteConfig' label='Site config' fullWidth multiline />
+      <TextInput source='id' label='id' disabled className={classes.wide} />
+      <TextInput source='caption' label='Название' />
+      <TextInput source='unit' label='Ед изм' />
+      <NumberInput source='qntMin' label='Мин выпуск' />
+      <NumberInput source='qntStep' label='Шаг выпуска' />
+      <BooleanInput source='inWorkingDays' label='Рабочие дни' />
+      <TextInput source='comments' label='Примечания' />
     </SimpleForm>
   )
 }
@@ -67,12 +69,12 @@ export const ProductCreate = (props) => (
 )
 
 const ProductEditTitle = ({ record }) => {
-  return <span>Deploy Project {record ? `"${record.name}"` : ''}</span>
+  return <span>Продукт {record ? `"${record.caption}"` : ''}</span>
 }
 
 ProductEditTitle.propTypes = {
   record: PropTypes.shape({
-    name: PropTypes.string
+    caption: PropTypes.string
   })
 }
 

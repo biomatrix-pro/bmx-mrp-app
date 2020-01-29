@@ -53,16 +53,16 @@ const App = () => (
     customReducers={{ theme: themeReducer }}
   >
     <Resource
-      name='Product'
-      options={{ label: 'Products' }}
+      name='product'
+      options={{ label: 'Продукты' }}
       list={ProductList}
       icon={AccountTreeIcon}
       edit={ProductEdit}
       create={ProductCreate}
     />
     <Resource
-      name='DeployEvent'
-      options={{ label: 'Deploy events' }}
+      name='productstock'
+      options={{ label: 'Склад продукции' }}
       list={DeployEventList}
       icon={LibraryBooksIcon}
       edit={DeployEventEdit}
