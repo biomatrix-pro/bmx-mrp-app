@@ -19,13 +19,9 @@ import {
   SelectInput
 } from 'react-admin'
 import { makeStyles } from '@material-ui/core/styles'
+import { FormStyles } from './form-styles'
 
-const useStyles = makeStyles({
-  wide: {
-    width: '45%',
-    minWidth: '251px'
-  }
-})
+const useStyles = makeStyles(FormStyles)
 
 const ProductFilter = (props) => (
   <Filter {...props}>
@@ -51,8 +47,8 @@ const ProductForm = (props) => {
 
   return (
     <SimpleForm {... props}>
-      <TextInput source='id' label='id' disabled className={classes.wide} />
-      <TextInput source='caption' label='Название' />
+      <TextInput source='id' label='id' disabled className={classes.wide45} />
+      <TextInput source='caption' label='Название' className={classes.wide75} />
       <TextInput source='unit' label='Ед изм' />
       <NumberInput source='qntMin' label='Мин выпуск' />
       <NumberInput source='qntStep' label='Шаг выпуска' />

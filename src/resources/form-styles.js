@@ -1,10 +1,10 @@
 export const FormStyles = {
   wide35: {
-    width: '35%',
+    width: '35% !important',
     minWidth: '251px'
   },
   wide45: {
-    width: '45%',
+    width: '45% !important',
     minWidth: '251px'
   },
   wide50: {
@@ -16,7 +16,7 @@ export const FormStyles = {
     minWidth: '251px'
   },
   wide75: {
-    width: '75%',
+    width: '75% !important',
     minWidth: '251px'
   }
 }
