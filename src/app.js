@@ -1,10 +1,11 @@
 import React from 'react'
-import { Admin, Resource, Login, Layout, AppBar } from 'react-admin'
+import { Admin, AppBar, Layout, Resource } from 'react-admin'
 import { useSelector } from 'react-redux'
 import dataProvider from './core/data-provider'
-import { UserList, UserCreate, UserEdit } from './resources/users'
+import { UserCreate, UserEdit, UserList } from './resources/users'
 import { UserGroupCreate, UserGroupEdit, UserGroupList } from './resources/user-groups'
 
+import { createStyles } from '@material-ui/core/styles'
 import UserIcon from '@material-ui/icons/Person'
 import UserGroupIcon from '@material-ui/icons/Group'
 import AccountTreeIcon from '@material-ui/icons/AccountTree'
@@ -18,12 +19,19 @@ import themeReducer from './core/theme-reducer'
 import { darkTheme, lightTheme } from './core/themes'
 import { ThemeName } from './core/actions'
 
-import {
-  ProductList, ProductCreate, ProductEdit,
-  DeployEventList, DeployEventEdit
-} from './resources/mrp'
+import { DeployEventEdit, DeployEventList, ProductCreate, ProductEdit, ProductList } from './resources/mrp'
+import { MyLoginPage } from './forms/login-form'
 
-const MyLoginPage = () => <Login backgroundImage='https://loremflickr.com/1024/768/computers' />
+const styles = ({ spacing }) =>
+  createStyles({
+    button: {
+      width: '100%'
+    },
+    icon: {
+      marginRight: spacing.unit
+    }
+  })
+
 const MyAppBar = props => <AppBar {...props} userMenu={<MyMenu />} />
 const MyLayout = props => {
   const theme = useSelector((state) =>
