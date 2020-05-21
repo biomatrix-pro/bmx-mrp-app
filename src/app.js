@@ -22,15 +22,15 @@ import { ThemeName } from './core/actions'
 import { DeployEventEdit, DeployEventList, ProductCreate, ProductEdit, ProductList } from './resources/mrp'
 import { MyLoginPage } from './forms/login-form'
 
-const styles = ({ spacing }) =>
-  createStyles({
-    button: {
-      width: '100%'
-    },
-    icon: {
-      marginRight: spacing.unit
-    }
-  })
+// const styles = ({ spacing }) =>
+//   createStyles({
+//     button: {
+//       width: '100%'
+//     },
+//     icon: {
+//       marginRight: spacing.unit
+//     }
+//   })
 
 const MyAppBar = props => <AppBar {...props} userMenu={<MyMenu />} />
 const MyLayout = props => {
