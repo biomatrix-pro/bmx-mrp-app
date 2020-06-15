@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^10.1.0",
     "node-fetch": "latest",
     "prop-types": "^15.7.2",
+    "qs": "^6.9.4",
     "ra-data-json-server": "^3.5.0",
     "react": "^16.13.1",
     "react-admin": "^3.5.0",
