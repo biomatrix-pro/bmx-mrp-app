@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import HomeIcon from '@material-ui/icons/Home'
 import { makeStyles } from '@material-ui/core/styles'
-import { useTranslate } from 'react-admin'
+// import { useTranslate } from 'react-admin'
 import Logo from './logo512.png'
 
 const useStyles = makeStyles({
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 })
 
 export const Welcome = () => {
-  const translate = useTranslate()
+  // const translate = useTranslate()
   const classes = useStyles()
   return (
     <Card>

@@ -5,7 +5,7 @@ import dataProvider from './core/data-provider'
 import { UserCreate, UserEdit, UserList } from './resources/users'
 import { UserGroupCreate, UserGroupEdit, UserGroupList } from './resources/user-groups'
 
-import { createStyles } from '@material-ui/core/styles'
+// import { createStyles } from '@material-ui/core/styles'
 import UserIcon from '@material-ui/icons/Person'
 import UserGroupIcon from '@material-ui/icons/Group'
 import AccountTreeIcon from '@material-ui/icons/AccountTree'

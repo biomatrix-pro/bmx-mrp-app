@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   List, Create, Edit, Filter,
-  SimpleForm, required,
+  SimpleForm,
   TextInput,
   Datagrid,
   TextField,

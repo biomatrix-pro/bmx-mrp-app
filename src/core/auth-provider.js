@@ -21,15 +21,19 @@ const authProvider = {
         .then(({ token }) => {
           window.localStorage.setItem('token', token)
         })
+        .catch((e) => {
+          return Promise.reject(e)
+        })
     } else if (social && !username && !password && !code && !state) {
       // 1 redirect to social login:
       if (social !== 'yandex') {
         // as for now - only Yandex login in supported:
-        throw new Error('Only Yandex is supported')
+        return Promise.reject(Error('Only Yandex is supported'))
       }
       window.location =
         `https://oauth.yandex.ru/authorize?response_type=code&client_id=${process.env.REACT_APP_SOCIAL_YANDEX_APP}` +
         `&redirect_uri=${encodeURIComponent(process.env.REACT_APP_URL + '/#/login')}&state=app`
+      return Promise.resolve()
     } else if (!username && !password && code && state) {
       console.log('Code grabbed!')
       console.log(code)
@@ -39,15 +43,25 @@ const authProvider = {
         body: JSON.stringify({ code }),
         headers: new Headers({ 'Content-Type': 'application/json' })
       })
+
       return fetch(request)
         .then(response => {
           if (response.status < 200 || response.status >= 300) {
-            throw new Error(response.statusText)
+            const msg = response.statusText
+            if (response.body) {
+              console.log(response.body)
+            }
+            throw new Error(msg)
           }
           return response.json()
         })
         .then(({ token }) => {
           window.localStorage.setItem('token', token)
+          return Promise.resolve()
+        })
+        .catch((e) => {
+          console.log('ERROR!')
+          return Promise.reject(e)
         })
     }
   },
@@ -55,7 +69,14 @@ const authProvider = {
     window.localStorage.removeItem('token')
     return Promise.resolve()
   },
-  checkError: () => Promise.resolve(),
+  checkError: (error) => {
+    const status = error.status
+    if (status === 401 || status === 403) {
+      window.localStorage.removeItem('token')
+      return Promise.reject(Error('auth error'))
+    }
+    return Promise.resolve()
+  },
   checkAuth: () =>
     window.localStorage.getItem('token') ? Promise.resolve() : Promise.reject(Error('no auth')),
   getPermissions: () => Promise.reject(Error('Unknown method'))

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Login, LoginForm, useLogin } from 'react-admin'
+import { Login, LoginForm, useLogin, useNotify } from 'react-admin'
 import { useLocation } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import CardActions from '@material-ui/core/CardActions'
@@ -22,6 +22,7 @@ export const MyLoginPage = () => {
   const classes = useStyles()
   const userLogin = useLogin()
   const location = useLocation()
+  const notify = useNotify()
 
   useEffect(() => {
     // const { searchParams } = new URL(window.location.href)
@@ -35,8 +36,14 @@ export const MyLoginPage = () => {
     if (code && state) {
       setLoading(true)
       userLogin({ code, state })
+        .catch((e) => {
+          setLoading(false)
+          console.log('ERROR:')
+          console.log(e)
+          notify('Login error', 'warning')
+        })
     }
-  }, [userLogin])
+  }, [userLogin, notify, location.search])
 
   const handleLogin = () => {
     setLoading(true)
