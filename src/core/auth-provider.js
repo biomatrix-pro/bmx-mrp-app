@@ -65,10 +65,35 @@ const authProvider = {
         })
     }
   },
+
   logout: () => {
-    window.localStorage.removeItem('token')
-    return Promise.resolve()
+    console.log('logout!')
+    const token = window.localStorage.getItem('token')
+    if (token) {
+      const request = new Request(`${ApiUrl}/auth/logout`, {
+        method: 'GET',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`
+        })
+      })
+      return fetch(request)
+        .then(response => {
+          if (response.status < 200 || response.status >= 300) {
+            throw new Error(response.statusText)
+          }
+          window.localStorage.removeItem('token')
+          return Promise.resolve()
+        })
+        .catch((e) => {
+          return Promise.reject(e)
+        })
+    } else {
+      window.localStorage.removeItem('token')
+      return Promise.resolve()
+    }
   },
+
   checkError: (error) => {
     const status = error.status
     if (status === 401 || status === 403) {
@@ -77,6 +102,7 @@ const authProvider = {
     }
     return Promise.resolve()
   },
+
   checkAuth: () =>
     window.localStorage.getItem('token') ? Promise.resolve() : Promise.reject(Error('no auth')),
   getPermissions: () => Promise.reject(Error('Unknown method'))
