@@ -31,9 +31,8 @@
     "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
     "qs": "^6.9.4",
-    "ra-data-json-server": "^3.6.3",
     "react": "^16.13.1",
-    "react-admin": "^3.6.3",
+    "react-admin": "^3.7.0",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1"
   },
