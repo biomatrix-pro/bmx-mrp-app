@@ -30,7 +30,7 @@
     "@testing-library/user-event": "^12.1.4",
     "node-fetch": "^2.6.1",
     "prop-types": "^15.7.2",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "react": "^16.13.1",
     "react-admin": "^3.8.4",
     "react-dom": "^16.13.1",
